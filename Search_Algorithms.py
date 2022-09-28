@@ -7,6 +7,7 @@ to this file that are not part of the classes that we want.
 
 import heapq
 import sys
+import math
 
 
 from util import generate_graph
@@ -292,6 +293,15 @@ def get_manhattan_heuristic(node, goal):
 
     manhattan_dist = i_delta + j_delta
     return manhattan_dist
+
+def get_geographical_heuristic(node, goal):
+    i, j = divmod(int(node), 8)
+    i_goal, j_goal = divmod(int(goal), 8)
+    i_delta = abs(i - i_goal)
+    j_delta = abs(j - j_goal)
+
+    geo_dist = (i_delta**2 + j_delta**2)**.05
+    return geo_dist
 
 
 if __name__ == '__main__':
